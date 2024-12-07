@@ -1,0 +1,53 @@
+<h1>Users</h1>
+
+<div
+  *ngFor="let user of users$ | async"
+  style="border: solid gainsboro 1px; margin: .5rem; padding: .5rem; display: flex;"
+>
+
+  <div style="width: 100px;">
+    id: {{ user.id }}
+  </div>
+
+  <div style="width: 200px;">
+    {{user.name}}
+  </div>
+
+  <div>
+    {{user.active ? '✔️' : '❌'}}
+  </div>
+
+  <button (click)="deleteUser(user)" [disabled]="deleteInProgress$ | async">
+    Delete
+  </button>
+
+</div>
+
+<div>
+  page index: {{currentPage$ | async}}
+</div>
+
+<div>
+  page size: {{pageSize$ | async}}
+</div>
+
+<div>
+  current page: {{currentPage$ | async}}
+</div>
+
+<div>
+  total pages: {{totalPages$ | async}}
+</div>
+
+<div>
+  total users: {{totalUsers$ | async}}
+</div>
+
+<button [disabled]="(hasPreviousPage$ | async) === false" (click)="loadPreviousPage()">
+  previous page
+</button>
+
+
+<button [disabled]="(hasNextPage$ | async) === false" (click)="loadNextPage()">
+  next page
+</button>
