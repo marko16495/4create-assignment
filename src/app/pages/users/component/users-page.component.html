@@ -1,53 +1,63 @@
-<h1>Users</h1>
+<div class="app-users-page--header">
 
-<div
-  *ngFor="let user of users$ | async"
-  style="border: solid gainsboro 1px; margin: .5rem; padding: .5rem; display: flex;"
->
+  <h2>Users</h2>
 
-  <div style="width: 100px;">
-    id: {{ user.id }}
+  <span class="app-users-page--header-actions">
+    <button
+      ds-button
+      color="error"
+      (click)="deleteAllUsersOnPage()"
+      type="button">
+      Delete page
+    </button>
+    <button
+      ds-button
+      (click)="openCreateDialog()"
+      [disabled]="(createButtonEnabled$ | async) === false"
+      type="button">
+      Create user
+    </button>
+  </span>
+
+</div>
+
+@if (firstLoadCompleted$ | async) {
+
+  <ds-table [columns]="tableColumns" [data]="users$ | async">
+    <ng-template [dsTableHeaderCell]="'actions'"></ng-template>
+    <ng-template [dsTableCell]="'active'" let-item="item">
+      {{ item.active ? '✅' : '❌' }}
+    </ng-template>
+    <ng-template [dsTableCell]="'actions'" let-item="item">
+      <div class="app-users-page--table-row-actions">
+        <button
+          ds-ghost-button
+          (click)="openEditDialog(item)"
+          title="Edit user">
+          Edit
+        </button>
+        <button
+          ds-ghost-button
+          color="error"
+          (click)="deleteUser(item)"
+          title="Delete user">
+          Delete
+        </button>
+      </div>
+    </ng-template>
+  </ds-table>
+
+  <ds-paginator
+    [pageSizeOptions]="[5, 10]"
+    [showItemsPerPage]="true"
+    [totalElements]="totalUsers$ | async"
+    [showTotalElements]="true"
+    (pageChange)="onPageChange($event)"
+  ></ds-paginator>
+}
+
+@if (loaderVisible$ | async) {
+  <div class="app-overlay">
+    <ds-spinner size="xlg"></ds-spinner>
   </div>
-
-  <div style="width: 200px;">
-    {{user.name}}
-  </div>
-
-  <div>
-    {{user.active ? '✔️' : '❌'}}
-  </div>
-
-  <button (click)="deleteUser(user)" [disabled]="deleteInProgress$ | async">
-    Delete
-  </button>
-
-</div>
-
-<div>
-  page index: {{currentPage$ | async}}
-</div>
-
-<div>
-  page size: {{pageSize$ | async}}
-</div>
-
-<div>
-  current page: {{currentPage$ | async}}
-</div>
-
-<div>
-  total pages: {{totalPages$ | async}}
-</div>
-
-<div>
-  total users: {{totalUsers$ | async}}
-</div>
-
-<button [disabled]="(hasPreviousPage$ | async) === false" (click)="loadPreviousPage()">
-  previous page
-</button>
-
-
-<button [disabled]="(hasNextPage$ | async) === false" (click)="loadNextPage()">
-  next page
-</button>
+}

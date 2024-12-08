@@ -1,0 +1,22 @@
+:host {
+  accent-color: var(--color-primary-400);
+  &.ds-checkbox-size-sm {
+    width: .75rem;
+    height: .75rem;
+  }
+
+  &.ds-checkbox-size-md {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &.ds-checkbox-size-lg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &.ds-checkbox-size-xlg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

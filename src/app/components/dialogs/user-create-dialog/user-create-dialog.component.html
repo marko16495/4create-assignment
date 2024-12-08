@@ -1,0 +1,53 @@
+<ds-dialog-header
+  label="Create user"
+  (closeButtonClick)="close()">
+</ds-dialog-header>
+
+<form [formGroup]="form" autocomplete="off" class="app-user-create-dialog-form">
+
+  <ds-form-field>
+    <label>Name</label>
+    <input formControlName="name" ds-input size="lg">
+    @if (form.controls.name.invalid && form.controls.name.touched) {
+      <ds-error>
+        <app-form-control-error [control]="form.controls.name"></app-form-control-error>
+      </ds-error>
+    }@else if (form.controls.name.pending) {
+      <span class="ds-form-field-info">Checking name availability...</span>
+    } @else if (form.controls.name.valid) {
+      <span class="ds-form-field-info" style="color: green">Name is available</span>
+    }
+  </ds-form-field>
+
+
+  <div class="app-user-create-dialog-checkbox-input">
+    <input
+      type="checkbox"
+      ds-checkbox
+      [formControl]="form.controls.active"
+      size="lg"
+      id="app-user-create-dialog--active-checkbox">
+    <label for="app-user-create-dialog--active-checkbox">Active</label>
+  </div>
+
+</form>
+
+<ds-dialog-actions>
+  <button
+    ds-ghost-button
+    size="xlg"
+    color="text"
+    (click)="close()"
+    type="button">
+    Cancel
+  </button>
+  <button
+    ds-button
+    size="xlg"
+    type="button"
+    [disabled]="form.invalid || form.pending"
+    (click)="submit()"
+    data-test="app-user-create-dialog-submit-button">
+    Save
+  </button>
+</ds-dialog-actions>

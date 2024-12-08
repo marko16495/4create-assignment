@@ -1,0 +1,53 @@
+[ds-select] {
+  border: solid var(--color-border) 1px;
+  background: transparent;
+  color: var(--color-text);
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 3px;
+  box-sizing: border-box;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+
+  &.ds-select-size-sm {
+    padding: .5rem;
+    padding-right: 1.25rem;
+    font-size: .9rem;
+  }
+
+  &.ds-select-size-md {
+    padding: .55rem;
+    padding-right: 1.5rem;
+    font-size: 1rem;
+  }
+
+  &.ds-select-size-lg {
+    padding: .6rem;
+    padding-right: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  &.ds-select-size-xlg {
+    padding: .7rem;
+    padding-right: 1.75rem;
+    font-size: 1.2rem;
+  }
+
+  &:focus {
+    border-color: var(--color-primary-300);
+  }
+
+  &.ng-touched.ng-invalid {
+    border-color: var(--color-error);
+  }
+
+  option {
+    color: #1a1a1a;
+  }
+
+}

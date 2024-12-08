@@ -1,0 +1,33 @@
+ds-form-field {
+  width: 300px;
+  display: inline-block;
+  label {
+    margin-bottom: .25rem;
+    font-size: 0.9rem;
+  }
+  label,
+  [ds-input],
+  [ds-select],
+  .ds-form-field-bottom-content {
+    display: block;
+    width: 100%;
+  }
+  .ds-form-field-bottom-content {
+    margin-top: .15rem;
+    height: 1rem;
+    position: relative;
+    ds-error {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      font-size: .85rem;
+    }
+    .ds-form-field-info {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      font-size: .85rem;
+      color: var(--color-primary-500)
+    }
+  }
+}

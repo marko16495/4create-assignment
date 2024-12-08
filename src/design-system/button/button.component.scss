@@ -1,0 +1,193 @@
+button[ds-button], button[ds-stroked-button], button[ds-ghost-button] {
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  user-select: none;
+  cursor: pointer;
+
+  &.ds-button-round-borders {
+    border-radius: 4px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: auto;
+    pointer-events: none;
+  }
+
+  &.ds-button-size-sm {
+    padding: 0.25rem .5rem;
+    font-size: 0.9rem;
+    height: 1.5rem;
+  }
+
+  &.ds-button-size-md {
+    padding: 0.35rem .6rem;
+    height: 1.8rem;
+  }
+
+  &.ds-button-size-lg {
+    padding: 0.5rem .8rem;
+    height: 2rem;
+  }
+
+  &.ds-button-size-xlg {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    height: 2.2rem;
+  }
+
+  &.ds-button {
+
+    &.ds-button-color-text {
+      background: rgba(var(--color-text-rgb), .9);
+      color: var(--color-background);
+
+      &:focus {
+        background: rgba(var(--color-text-rgb), 1);
+      }
+
+      &:hover {
+        background: rgba(var(--color-text-rgb), 1);
+      }
+
+      &[disabled] {
+        background: rgba(var(--color-text-rgb), .5);
+      }
+    }
+
+    &.ds-button-color-primary {
+      background: var(--color-primary-400);
+      color: white;
+      &:focus {
+        background: var(--color-primary-500);
+      }
+      &:hover {
+        background: var(--color-primary-500);
+      }
+      &[disabled] {
+        background: var(--color-primary-200);
+      }
+    }
+
+    &.ds-button-color-error {
+      background: var(--color-error-400);
+      color: white;
+      &:focus {
+        background: var(--color-error-500);
+      }
+      &:hover {
+        background: var(--color-error-500);
+      }
+      &[disabled] {
+        background: var(--color-error-200);
+      }
+    }
+  }
+
+  &.ds-stroked-button {
+    background: transparent;
+    border: solid var(--color-border) 1px;
+
+    &.ds-button-color-text {
+      color: var(--color-text);
+
+      &:focus {
+        background: rgba(var(--color-text-rgb), .1);
+      }
+
+      &:hover {
+        background: rgba(var(--color-text-rgb), .1);
+      }
+
+      &[disabled] {
+        opacity: .6;
+      }
+    }
+
+    &.ds-button-color-primary {
+      color: var(--color-primary);
+      &:focus {
+        background: rgba(var(--primary-rgb), .1);
+      }
+      &:hover {
+        background: rgba(var(--primary-rgb), .1);
+      }
+      &[disabled] {
+        opacity: 0.75;
+      }
+    }
+
+    &.ds-button-color-error {
+      color: var(--color-error-400);
+      &:focus {
+        background: rgba(var(--error-rgb), .1);
+      }
+      &:hover {
+        background: rgba(var(--error-rgb), .1);
+      }
+      &[disabled] {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  &.ds-ghost-button {
+    background: transparent;
+
+    &.ds-button-color-text {
+      color: var(--color-text);
+
+      &:focus {
+        background: rgba(var(--color-text-rgb), .1);
+      }
+
+      &:hover {
+        background: rgba(var(--color-text-rgb), .1);
+      }
+
+      &[disabled] {
+        opacity: .6;
+      }
+    }
+
+    &.ds-button-color-primary {
+      color: var(--color-primary);
+      &:focus {
+        background: rgba(var(--primary-rgb), .1);
+      }
+      &:hover {
+        background: rgba(var(--primary-rgb), .1);
+      }
+      &[disabled] {
+        opacity: 0.75;
+      }
+    }
+
+    &.ds-button-color-error {
+      color: var(--color-error-400);
+      &:focus {
+        background: rgba(var(--error-rgb), .1);
+      }
+      &:hover {
+        background: rgba(var(--error-rgb), .1);
+      }
+      &[disabled] {
+        opacity: 0.75;
+      }
+    }
+  }
+
+}

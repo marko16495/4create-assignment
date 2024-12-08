@@ -1,0 +1,158 @@
+button[ds-fab], button[ds-ghost-fab] {
+
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  user-select: none;
+  cursor: pointer;
+
+  border-radius: 50%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: auto;
+    pointer-events: none;
+  }
+
+  &.ds-fab-size-sm {
+    font-size: 0.9rem;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  &.ds-fab-size-md {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+
+  &.ds-fab-size-lg {
+    font-size: 1.25rem;
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+
+  &.ds-fab-size-xlg {
+    font-size: 1.5rem;
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  &[ds-fab] {
+
+    &.ds-fab-color-text {
+      background: rgba(var(--color-text-rgb), .9);
+      color: var(--color-background);
+
+      &:focus {
+        background: rgba(var(--color-text-rgb), 1);
+      }
+
+      &:hover {
+        background: rgba(var(--color-text-rgb), 1);
+      }
+
+      &[disabled] {
+        background: rgba(var(--color-text-rgb), .5);
+      }
+    }
+
+    &.ds-fab-color-primary {
+      background: var(--color-primary-400);
+      color: white;
+
+      &:focus {
+        background: var(--color-primary-500);
+      }
+
+      &:hover {
+        background: var(--color-primary-500);
+      }
+
+      &[disabled] {
+        background: var(--color-primary-200);
+      }
+    }
+
+    &.ds-fab-color-error {
+      background: var(--color-error-400);
+      color: white;
+
+      &:focus {
+        background: var(--color-error-500);
+      }
+
+      &:hover {
+        background: var(--color-error-500);
+      }
+
+      &[disabled] {
+        background: var(--color-error-200);
+      }
+    }
+  }
+
+  &[ds-ghost-fab] {
+    background: transparent;
+
+    &.ds-fab-color-text {
+      color: var(--color-text);
+
+      &:focus {
+        background: rgba(var(--color-text-rgb), .1);
+      }
+
+      &:hover {
+        background: rgba(var(--color-text-rgb), .1);
+      }
+
+      &[disabled] {
+        opacity: .6;
+      }
+    }
+
+    &.ds-fab-color-primary {
+      color: var(--color-primary);
+
+      &:focus {
+        background: rgba(var(--primary-rgb), .1);
+      }
+
+      &:hover {
+        background: rgba(var(--primary-rgb), .1);
+      }
+
+      &[disabled] {
+        opacity: 0.5;
+      }
+    }
+
+    &.ds-fab-color-error {
+      color: var(--color-error-400);
+
+      &:focus {
+        background: rgba(var(--error-rgb), .1);
+      }
+
+      &:hover {
+        background: rgba(var(--error-rgb), .1);
+      }
+
+      &[disabled] {
+        opacity: 0.5;
+      }
+    }
+  }
+
+}

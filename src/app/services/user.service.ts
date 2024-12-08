@@ -4,7 +4,33 @@ import {CreateUserDto} from '../models/create-user.dto';
 import {PaginatedResponseDto} from '../models/paginated-response.dto';
 import {UpdateUserDto} from '../models/update-user.dto';
 import {UserDto} from '../models/user-dto';
-import {initialUsers} from './initial-users';
+
+const initialUsers: CreateUserDto[] = [
+  {name: 'Madilyn Day', active: true},
+  {name: 'Kayson Marin', active: false},
+  {name: 'Celia Poole', active: true},
+  {name: 'Quincy Keith', active: true},
+  {name: 'Elyse McCullough', active: true},
+  {name: 'Briar Fuller', active: true},
+  {name: 'Oakley Jordan', active: false},
+  {name: 'Sawyer Church', active: false},
+  {name: 'Ayleen Stout', active: false},
+  {name: 'Callahan Quintana', active: true},
+  {name: 'Kenia Turner', active: true},
+  {name: 'Joshua Pace', active: false},
+  {name: 'Giana Yang', active: true},
+  {name: 'Malcolm Case', active: false},
+  {name: 'Cleo Barr', active: true},
+  {name: 'Harley Rowland', active: true},
+  {name: 'Harleigh Stafford', active: true},
+  {name: 'Alfredo Alfaro', active: true},
+  {name: 'Yasmin Horton', active: true},
+  {name: 'Garrett Galindo', active: false},
+  {name: 'Corinne Fuentes', active: true},
+  {name: 'Bowen Alvarez', active: true},
+  {name: 'Leilani Skinner', active: true},
+  {name: 'Ridge Dominguez', active: true},
+]
 
 @Injectable({
   providedIn: 'root'
@@ -19,38 +45,46 @@ export class UserService {
   }
 
   public createUser(createUserDto: CreateUserDto): Observable<void> {
-    return timer(1000).pipe(
+    return this._randomTimer().pipe(
       map(() => this._createUser(createUserDto)),
     );
   }
 
   public updateUser(updateUserDto: UpdateUserDto): Observable<void> {
-    return timer(1000).pipe(
+    return this._randomTimer().pipe(
       map(() => this._updateUser(updateUserDto)),
     );
   }
 
   public deleteUser(userId: number): Observable<void> {
-    return timer(1000).pipe(
+    return this._randomTimer().pipe(
       map(() => this._deleteUser(userId)),
     );
   }
 
-  public isNameTaken(name: string): Observable<boolean> {
-    return timer(1000).pipe(
-      map(() => this._isNameTaken(name)),
+  public deleteMultipleUsers(users: UserDto[]): Observable<void> {
+    return this._randomTimer().pipe(
+      map(() => this._deleteMultipleUsers(users)),
+    );
+  }
+
+  public isNameTakenByAnotherUser(name: string, userId: number | null): Observable<boolean> {
+    return this._randomTimer().pipe(
+      map(() => this._isNameTakenByAnotherUser(name, userId)),
     );
   }
 
   public getUsers(pageIndex: number, pageSize: number): Observable<PaginatedResponseDto<UserDto>> {
     const startIndex = pageIndex * pageSize;
     const endIndex = startIndex + pageSize;
-    const data = this._users.slice(startIndex, endIndex);
+    const data = this._users
+      .sort((a, b) => b.id - a.id)
+      .slice(startIndex, endIndex);
     const response: PaginatedResponseDto<UserDto> = {
       total: this._users.length,
       data: data
     }
-    return timer(200).pipe(
+    return this._randomTimer().pipe(
       map(() => response)
     );
   }
@@ -81,9 +115,20 @@ export class UserService {
     this._users.splice(index, 1);
   }
 
-  private _isNameTaken(name: string): boolean {
+  private _deleteMultipleUsers(users: UserDto[]): void {
+    for (const user of users) {
+      this._deleteUser(user.id);
+    }
+  }
+
+  private _isNameTakenByAnotherUser(name: string, userId: number | null): boolean {
     const user = this._users.find(user => user.name === name);
-    return !!user;
+    return !!user && user.id !== userId;
+  }
+
+  private _randomTimer(): Observable<0> {
+    const duration = 300 + Math.random() * 100;
+    return timer(duration)
   }
 
 }

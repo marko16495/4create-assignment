@@ -1,1 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+
+body {
+
+  --color-primary-50: #e3eaf1;
+  --color-primary-100: #b9cbdc;
+  --color-primary-200: #8aa8c4;
+  --color-primary-300: #5b85ac;
+  --color-primary-400: #376b9b;
+  --color-primary-500: #145189;
+  --color-primary-600: #124a81;
+  --color-primary-700: #0e4076;
+  --color-primary-800: #0b376c;
+  --color-primary-900: #062759;
+  --color-primary: #145189;
+  --primary-rgb: 20, 81, 137;
+
+  --color-error-50: #f9e0e0;
+  --color-error-100: #f0b3b3;
+  --color-error-200: #e68080;
+  --color-error-300: #db4d4d;
+  --color-error-400: #d42626;
+  --color-error-500: #cc0000;
+  --color-error-600: #c70000;
+  --color-error-700: #c00000;
+  --color-error-800: #b90000;
+  --color-error-900: #ad0000;
+  --color-error: #cc0000;
+  --error-rgb: 204, 0, 0;
+
+  --color-text: #1a1a1a;
+  --color-text-rgb: 26, 26, 26;
+  --color-background: #e3e3e3;
+  --color-background-rgb: 227, 227, 227;
+  --color-border: #c7c7c7;
+
+  --sidebar-width: 240px;
+  --topbar-height: 52px;
+}
+
+
+body.app-dark-theme {
+  --color-text: #e3e3e3;
+  --color-text-rgb: 227, 227, 227;
+  --color-background: #303030;
+  --color-background-rgb: 48, 48, 48;
+  --color-border: #676767;
+}
+
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+cdk-dialog-container {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  font-size: 14px;
+}
+
+.app-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background: rgba(var(--color-text-rgb), 0.1);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

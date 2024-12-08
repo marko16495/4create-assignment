@@ -1,0 +1,25 @@
+:host {
+  padding: .25rem 1.5rem;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.ds-dialog-header-color-primary {
+    background: var(--color-primary-500);
+  }
+
+  &.ds-dialog-header-color-error {
+    background: var(--color-error-500);
+  }
+
+  &.ds-dialog-header-color-text {
+    background: var(--color-text);
+    color: var(--color-background);
+  }
+
+  .ds-dialog-header-close-button {
+    color: var(--color-background) !important;
+  }
+}

@@ -1,0 +1,70 @@
+<table>
+
+  <thead>
+  <tr>
+    <th *ngFor="let column of $any(columns)" [style.width]="column.width">
+        <ng-container *ngIf="tableHeaderCellRefs[column.id] as templateRef; else defaultHeaderCellContent">
+          <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+        </ng-container>
+        <ng-template #defaultHeaderCellContent>{{column.label}}</ng-template>
+    </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let item of data; trackBy: trackRowsBy">
+    <td *ngFor="let column of $any(columns)" [style.width]="column.width">
+
+      <span *ngIf="!$any(column).children; else collapsableTemplate">
+        <ng-container *ngIf="tableCellRefs[column.id] as templateRef; else defaultCellContent">
+          <ng-container [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{item: item}"></ng-container>
+        </ng-container>
+        <ng-template #defaultCellContent>
+          {{$any(item)[column.id]}}
+        </ng-template>
+      </span>
+
+      <ng-template #collapsableTemplate>
+        <div class="ds-table-collapsable">
+        <span class="ds-table-collapsable-text">
+          <ng-container *ngIf="tableCellRefs[column.id] as templateRef; else defaultCellContent">
+            <ng-container [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{item: item}"></ng-container>
+          </ng-container>
+          <ng-template #defaultCellContent>
+            {{$any(item)[column.id]}}
+          </ng-template>
+        </span>
+          <button dsToggle #toggle="dsToggle" ds-ghost-fab size="md" color="text">
+            <span *ngIf="!toggle.visible" class="material-icons">expand_more</span>
+            <span *ngIf="toggle.visible" class="material-icons">expand_less</span>
+          </button>
+        </div>
+
+        <div
+          *ngIf="toggle.visible"
+          class="ds-table-cell-collapsable-content"
+          [class.ds-table-cell-collapsable-fixed-height-children]="column.fixedHeightChildren">
+          <div *ngFor="let child of $any(column).children" class="ds-table-cell-collapsable-content-row">
+            <span class="ds-table-cell-collapsable-row-label">
+              <ng-container *ngIf="tableHeaderCellRefs[child.id] as templateRef; else defaultHeaderCellContent">
+                <ng-container [ngTemplateOutlet]="templateRef"></ng-container>
+              </ng-container>
+              <ng-template #defaultHeaderCellContent>{{child.label}}</ng-template>
+            </span>
+              <span>
+              <ng-container *ngIf="tableCellRefs[child.id] as templateRef; else defaultCellContent">
+                <ng-container [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{item: item}"></ng-container>
+              </ng-container>
+              <ng-template #defaultCellContent>
+                {{$any(item)[child.id]}}
+              </ng-template>
+            </span>
+          </div>
+        </div>
+      </ng-template>
+
+    </td>
+  </tr>
+  </tbody>
+
+</table>
