@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {LoadUsersAction, DeleteUserAction, CreateUserAction, UpdateUserAction, DeleteMultipleUsersAction} from './types';
 
+/**
+ * Actions are events that happen in application.
+ */
 @Injectable()
 export class UsersPageActions {
 

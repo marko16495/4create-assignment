@@ -5,6 +5,10 @@ import {UsersPageStatus} from './types';
 import {UsersPageActions} from './users-page-actions';
 import {UsersPageStore} from './users-page-store';
 
+/**
+ * Effects are responsible for handling actions.
+ * Effects update the state.
+ */
 @Injectable()
 export class UsersPageEffects {
 

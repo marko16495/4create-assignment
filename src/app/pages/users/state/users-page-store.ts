@@ -2,21 +2,26 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {UsersPageState, UsersPageStatus} from './types';
 
+/**
+ * Store holds the state (data).
+ *
+ * NOTE: Akita is not maintained anymore, and doesn't work with latest versions of Angular.
+ * Because of that, I created custom store implementation that only uses BehaviorSubject from RxJS.
+ */
 @Injectable()
 export class UsersPageStore {
 
   private readonly _store$ = new BehaviorSubject<UsersPageState>(this._createInitialState());
 
-  constructor() {
-    console.log(this._store$)
-  }
+  constructor() {}
 
-  public update(reducer: (currentState: UsersPageState) => UsersPageState) {
-    this._store$.next(reducer(this._store$.value));
+  public update(updateFn: (currentState: UsersPageState) => UsersPageState) {
+    this._store$.next(updateFn(this.getState()));
   }
 
   public getState(): UsersPageState {
-    return this._store$.value;
+    // Return copy of state object to prevent accidental updates
+    return structuredClone(this._store$.value);
   }
 
   public getStore() {
