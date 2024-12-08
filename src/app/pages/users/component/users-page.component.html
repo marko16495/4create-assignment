@@ -7,8 +7,9 @@
       ds-button
       color="error"
       (click)="deleteAllUsersOnPage()"
+      [disabled]="(users$ | async)?.length === 0"
       type="button">
-      Delete page
+      Delete all on page
     </button>
     <button
       ds-button

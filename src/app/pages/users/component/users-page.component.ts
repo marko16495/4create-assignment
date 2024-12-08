@@ -123,7 +123,7 @@ export class UsersPageComponent implements OnInit, OnDestroy {
     this._usersPageActions.deleteMultipleUsersAction$.next({
       users: state.data,
       onSuccess: () => {
-        this._snackbarService.info('All users deleted');
+        this._snackbarService.info(`Deleted ${state.data.length} user(s)`);
         if (state.hasNextPage || state.pageIndex === 0) {
           this.reloadData();
         } else {
