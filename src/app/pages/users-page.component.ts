@@ -10,8 +10,6 @@ import {TableComponent} from '../../design-system/table/table.component';
 import {UserCreateDialogComponent} from '../components/user-create-dialog/user-create-dialog.component';
 import {UsersStore} from '../state/users-store';
 
-const CREATE_USER_DIALOG_WIDTH_PX = 350;
-
 @Component({
   selector: 'app-users',
   templateUrl: './users-page.component.html',
@@ -46,7 +44,7 @@ export class UsersPageComponent {
 
   openCreateDialog() {
     const dialogRef = this._dialog.open(UserCreateDialogComponent, {
-      width: `${CREATE_USER_DIALOG_WIDTH_PX}px`,
+      panelClass: 'app-user-create-dialog-panel',
     });
     dialogRef.componentInstance!.submit$.subscribe(userDto => {
       dialogRef.close();

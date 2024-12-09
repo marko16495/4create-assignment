@@ -19,7 +19,7 @@
     color: var(--color-background);
   }
 
-  .ds-dialog-header-close-button {
-    color: var(--color-background) !important;
+  [ds-ghost-fab].ds-dialog-header-close-button {
+    color: var(--color-background);
   }
 }

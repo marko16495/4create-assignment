@@ -6,7 +6,7 @@ import {
   OnChanges,
   OnInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation, HostBinding
+  ViewEncapsulation, HostBinding, inject
 } from '@angular/core';
 import {DsComponentSize, DsComponentColor} from '../types';
 
@@ -36,11 +36,13 @@ export class ButtonComponent implements OnChanges, OnInit {
 
   @Input() @HostBinding('class.ds-button-round-borders') roundBorders = true;
 
+  private _elementRef = inject(ElementRef<HTMLButtonElement>);
+
   private _colorClass = this._getColorClass(this.color);
 
   private _sizeClass = this._getSizeClass(this.size);
 
-  constructor(private _elementRef: ElementRef<HTMLButtonElement>) {
+  constructor() {
     BUTTON_HOST_ATTRIBUTES.forEach(attr => {
       if (this._hasHostAttribute(attr)) {
         this._getHostElement().classList.add(attr);

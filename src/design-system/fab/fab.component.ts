@@ -6,7 +6,8 @@ import {
   OnChanges,
   OnInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  inject
 } from '@angular/core';
 import {DsComponentSize, DsComponentColor} from '../types';
 
@@ -28,12 +29,11 @@ export class FabComponent implements OnChanges, OnInit {
 
   @Input() size: DsComponentSize = 'md';
 
+  private _elementRef = inject(ElementRef<HTMLButtonElement>);
+
   private _colorClass = this._getColorClass(this.color);
 
   private _sizeClass = this._getSizeClass(this.size);
-
-  constructor(private _elementRef: ElementRef<HTMLButtonElement>) {
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['color']) {

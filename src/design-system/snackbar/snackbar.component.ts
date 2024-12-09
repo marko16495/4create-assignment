@@ -1,5 +1,15 @@
 import {CommonModule} from '@angular/common';
-import {Component, Input, ElementRef, SimpleChanges, OnInit, OnChanges, EventEmitter, Output} from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  SimpleChanges,
+  OnInit,
+  OnChanges,
+  EventEmitter,
+  Output,
+  inject
+} from '@angular/core';
 import {FabComponent} from '../fab/fab.component';
 import {DsComponentColor} from '../types';
 
@@ -18,8 +28,7 @@ export class SnackbarComponent implements OnInit, OnChanges {
 
   private _colorClass = this._getColorClass(this.color);
 
-  constructor(private _elementRef: ElementRef<HTMLElement>) {
-  }
+  private _elementRef = inject(ElementRef<HTMLElement>);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['color']) {

@@ -6,7 +6,8 @@ import {
   SimpleChanges,
   OnInit,
   OnChanges,
-  ElementRef
+  ElementRef,
+  inject
 } from '@angular/core';
 import {DsComponentSize} from '../types';
 
@@ -21,9 +22,9 @@ export class InputComponent implements OnInit, OnChanges {
   @Input() @HostBinding('autocomplete') autocomplete: 'on' | 'off' = 'off';
   @Input() size: DsComponentSize = 'md';
 
-  private _sizeClass = this._getSizeClass(this.size);
+  private _elementRef = inject(ElementRef<HTMLInputElement>);
 
-  constructor(private _elementRef: ElementRef<HTMLInputElement>) { }
+  private _sizeClass = this._getSizeClass(this.size);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['size']) {

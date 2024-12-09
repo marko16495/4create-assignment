@@ -1,32 +1,26 @@
 import {Overlay, OverlayRef} from '@angular/cdk/overlay';
 import {ComponentPortal} from '@angular/cdk/portal';
-import {Injectable} from '@angular/core';
+import {Injectable, inject} from '@angular/core';
 import {SnackbarComponent} from './snackbar.component';
 import {SnackbarConfig} from './snackbar.config';
 
 @Injectable()
 export class SnackbarService {
 
+  private readonly _overlay = inject(Overlay);
+
   private _overlayRef?: OverlayRef;
-
-  private readonly _snackbarWidthPx = 320;
-  private readonly _snackbarMinHeightPx = 45;
-  private readonly _snackbarMaxHeightPx = 70;
-
-  constructor(private readonly _overlay: Overlay) { }
 
   info(text: string) {
     this.open({
-      text: text
+      text: text,
     });
   }
 
   open(snackbarConfig: Partial<SnackbarConfig>) {
     this._detach(this._overlayRef);
     const overlayRef = this._overlay.create({
-      minHeight: `${this._snackbarMinHeightPx}px`,
-      maxHeight: `${this._snackbarMaxHeightPx}px`,
-      width: `${this._snackbarWidthPx}px`,
+      panelClass: 'app-snackbar-panel',
       positionStrategy: this._overlay.position().global().bottom('50px').centerHorizontally()
     });
     const snackbarComponentPortal = new ComponentPortal(SnackbarComponent);

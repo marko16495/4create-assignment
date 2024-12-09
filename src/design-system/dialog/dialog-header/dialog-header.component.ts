@@ -1,4 +1,14 @@
-import {Component, Input, SimpleChanges, OnChanges, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
+import {
+  Component,
+  Input,
+  SimpleChanges,
+  OnChanges,
+  OnInit,
+  ElementRef,
+  Output,
+  EventEmitter,
+  inject
+} from '@angular/core';
 import {FabComponent} from '../../fab/fab.component';
 import {DsComponentColor} from '../../types';
 
@@ -16,10 +26,9 @@ export class DialogHeaderComponent implements OnInit, OnChanges {
 
   @Output() closeButtonClick = new EventEmitter<void>();
 
-  private _colorClass = this._getColorClass(this.color);
+  private _elementRef = inject(ElementRef<HTMLElement>);
 
-  constructor(private _elementRef: ElementRef<HTMLElement>) {
-  }
+  private _colorClass = this._getColorClass(this.color);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['color']) {

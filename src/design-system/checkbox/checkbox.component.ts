@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, OnInit, OnChanges, Input, ElementRef, SimpleChanges} from '@angular/core';
+import {Component, OnInit, OnChanges, Input, ElementRef, SimpleChanges, inject} from '@angular/core';
 import {DsComponentSize} from '../types';
 
 @Component({
@@ -14,8 +14,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   private _sizeClass = this._getSizeClass(this.size);
 
-  constructor(private _elementRef: ElementRef<HTMLInputElement>) {
-  }
+  private _elementRef = inject(ElementRef<HTMLInputElement>);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['size']) {

@@ -8,7 +8,7 @@
   <ds-form-field>
     <label>Name</label>
     <input formControlName="name" ds-input size="lg">
-    @if (form.controls.name.invalid && form.controls.name.touched) {
+    @if (form.controls.name.invalid && form.controls.name.dirty) {
       <ds-error>
         <app-form-control-error [control]="form.controls.name"></app-form-control-error>
       </ds-error>
