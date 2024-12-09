@@ -1,4 +1,4 @@
-import {Directive, Input, TemplateRef} from '@angular/core';
+import {Directive, Input, TemplateRef, inject} from '@angular/core';
 
 @Directive({
   selector: '[dsTableHeaderCell]',
@@ -7,7 +7,7 @@ export class TableHeaderCellDirective {
 
   @Input('dsTableHeaderCell') columnName!: string;
 
-  constructor(readonly templateRef: TemplateRef<any>) { }
+  readonly templateRef = inject(TemplateRef<any>);
 
 }
 

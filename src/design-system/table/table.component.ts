@@ -11,7 +11,8 @@ import {
   SimpleChanges,
   OnChanges,
   OnInit,
-  TrackByFunction
+  TrackByFunction,
+  inject
 } from '@angular/core';
 import {Subscription, startWith} from 'rxjs';
 import {DsComponentSize} from '../types';
@@ -41,11 +42,10 @@ export class TableComponent implements OnDestroy, AfterContentInit, OnChanges, O
   tableCellRefs: { [key: string]: TemplateRef<any> } = {};
   tableHeaderCellRefs: { [key: string]: TemplateRef<any> } = {};
 
+  private _elementRef = inject(ElementRef<HTMLElement>);
+
   private _sizeClass = this._getSizeClass(this.size);
   private _subscriptions: Subscription[] = [];
-
-  constructor(private _elementRef: ElementRef<HTMLElement>) {
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['size']) {
