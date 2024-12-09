@@ -10,3 +10,4 @@ export class TableHeaderCellDirective {
   constructor(readonly templateRef: TemplateRef<any>) { }
 
 }
+

@@ -1,4 +1,4 @@
-export type TableColumns = RegularTableColumn[] | [CollapsableTableColumn]
+export type TableColumns = RegularTableColumn[];
 
 interface RegularTableColumn {
   id: string;
@@ -6,13 +6,4 @@ interface RegularTableColumn {
   width?: string;
   collapsable?: never;
   children?: never;
-}
-
-interface CollapsableTableColumn {
-  id: string;
-  label?: string;
-  width?: string;
-  collapsable: true;
-  children: RegularTableColumn[];
-  fixedHeightChildren: boolean;
 }

@@ -39,16 +39,6 @@ body {
   --topbar-height: 52px;
 }
 
-
-body.app-dark-theme {
-  --color-text: #e3e3e3;
-  --color-text-rgb: 227, 227, 227;
-  --color-background: #303030;
-  --color-background-rgb: 48, 48, 48;
-  --color-border: #676767;
-}
-
-
 body {
   background: var(--color-background);
   color: var(--color-text);
@@ -68,38 +58,4 @@ html {
   width: 100vw;
   margin: 0;
   font-size: 14px;
-}
-
-.app-overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  background: rgba(var(--color-text-rgb), 0.1);
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

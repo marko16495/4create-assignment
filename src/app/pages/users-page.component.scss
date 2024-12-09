@@ -4,18 +4,14 @@
   width: 100%;
   padding: 1rem;
   box-sizing: border-box;
-  .app-users-page--header {
+  .app-users-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .app-users-page--header-actions {
+    .app-users-page-header-actions {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-  }
-  .app-users-page--table-row-actions {
-    display: flex;
-    gap: .25rem;
   }
 }

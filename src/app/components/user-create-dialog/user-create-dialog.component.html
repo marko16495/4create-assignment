@@ -1,9 +1,9 @@
 <ds-dialog-header
-  label="Edit user"
+  label="Create user"
   (closeButtonClick)="close()">
 </ds-dialog-header>
 
-<form [formGroup]="form" autocomplete="off" class="app-user-edit-dialog-form">
+<form [formGroup]="form" autocomplete="off" class="app-user-create-dialog-form">
 
   <ds-form-field>
     <label>Name</label>
@@ -12,22 +12,26 @@
       <ds-error>
         <app-form-control-error [control]="form.controls.name"></app-form-control-error>
       </ds-error>
-    } @else if (form.controls.name.pending && form.controls.name.dirty) {
-      <span class="ds-form-field-info">Checking name availability...</span>
-    } @else if (form.controls.name.valid && form.controls.name.dirty) {
-      <span class="ds-form-field-info" style="color: green">Name is available</span>
+    }@else if (form.controls.name.pending) {
+      <span class="ds-form-field-info">
+        Checking name availability...
+      </span>
+    } @else if (form.controls.name.valid) {
+      <span class="ds-form-field-info app-user-create-dialog-valid-input-message">
+        Name is available
+      </span>
     }
   </ds-form-field>
 
 
-  <div class="app-user-edit-dialog-checkbox-input">
+  <div class="app-user-create-dialog-checkbox-input">
     <input
       type="checkbox"
       ds-checkbox
       [formControl]="form.controls.active"
       size="lg"
-      id="app-user-edit-dialog--active-checkbox">
-    <label for="app-user-edit-dialog--active-checkbox">Active</label>
+      id="app-user-create-dialog--active-checkbox">
+    <label for="app-user-create-dialog--active-checkbox">Active</label>
   </div>
 
 </form>
@@ -47,7 +51,7 @@
     type="button"
     [disabled]="form.invalid || form.pending"
     (click)="submit()"
-    data-test="app-user-edit-dialog-submit-button">
+    data-test="app-user-create-dialog-submit-button">
     Save
   </button>
 </ds-dialog-actions>

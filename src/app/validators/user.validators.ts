@@ -1,22 +1,23 @@
 import {Injectable, inject} from '@angular/core';
 import {AsyncValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms';
 import {Observable, map, of} from 'rxjs';
-import {UserService} from '../services/user.service';
+import {UsersStore} from '../state/users-store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserValidators {
 
-  private _userService = inject(UserService);
+  private _usersStore = inject(UsersStore);
 
-  availableName(userId: number | null): AsyncValidatorFn {
+  availableName(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       if (!control.value) {
         return of(null);
       }
-      return this._userService.isNameTakenByAnotherUser(control.value, userId)
-        .pipe(map(isTaken => isTaken ? {taken: true} : null))
+      return this._usersStore.findUserByName(control.value).pipe(
+        map(user => !!user ? {taken: true} : null),
+      )
     }
   }
 

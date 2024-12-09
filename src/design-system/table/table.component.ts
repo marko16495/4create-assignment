@@ -14,8 +14,6 @@ import {
   TrackByFunction
 } from '@angular/core';
 import {Subscription, startWith} from 'rxjs';
-import {FabComponent} from '../fab/fab.component';
-import {ToggleDirective} from '../toggle/toggle.directive';
 import {DsComponentSize} from '../types';
 import {TableCellDirective} from './table-cell.directive';
 import {TableColumns} from './table-column';
@@ -23,7 +21,7 @@ import {TableHeaderCellDirective} from './table-header-cell.directive';
 
 @Component({
   selector: 'ds-table',
-  imports: [CommonModule, FabComponent, ToggleDirective],
+  imports: [CommonModule],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })

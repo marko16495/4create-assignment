@@ -25,38 +25,6 @@ table {
       background: rgba(var(--color-text-rgb), 0.05);
     }
   }
-
-  td {
-    .ds-table-collapsable {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .ds-table-collapsable-text {
-        flex: 1 1 0;
-      }
-    }
-    .ds-table-cell-collapsable-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      padding-top: .25rem;
-      .ds-table-cell-collapsable-content-row {
-        border-top: solid var(--color-border) 1px;
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        align-items: center;
-        min-height: 2.5rem;
-        padding: 0.5rem 0;
-        box-sizing: border-box;
-      }
-      &.ds-table-cell-collapsable-fixed-height-children {
-        .ds-table-cell-collapsable-content-row {
-          height: 2.5rem;
-        }
-      }
-    }
-  }
 }
 :host {
   &.ds-table-size-sm {

@@ -1,0 +1,21 @@
+<div class="app-users-page-header">
+
+  <h2>Users</h2>
+
+  <span class="app-users-page-header-actions">
+
+    <button ds-button (click)="openCreateDialog()" [disabled]="(createButtonEnabled$ | async) === false" type="button">
+      Create user
+    </button>
+
+  </span>
+
+</div>
+
+<ds-table [columns]="tableColumns" [data]="users$ | async">
+
+  <ng-template [dsTableCell]="'active'" let-item="item">
+    {{ item.active ? '✅' : '❌' }}
+  </ng-template>
+
+</ds-table>
