@@ -46,10 +46,10 @@ export class UsersPageComponent {
     const dialogRef = this._dialog.open(UserCreateDialogComponent, {
       panelClass: 'app-user-create-dialog-panel',
     });
-    dialogRef.componentInstance!.submit$.subscribe(userDto => {
+    dialogRef.componentInstance!.submit$.subscribe(createUserDto => {
       dialogRef.close();
       this._snackbarService.info('User created');
-      this._usersStore.createUser(userDto);
+      this._usersStore.createUser(createUserDto);
     });
   }
 
