@@ -3,11 +3,13 @@ import {AsyncPipe} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {map} from 'rxjs';
 import {ButtonComponent} from '../../design-system/button/button.component';
+import {CheckboxComponent} from '../../design-system/checkbox/checkbox.component';
 import {SnackbarService} from '../../design-system/snackbar/snackbar.service';
 import {TableCellDirective} from '../../design-system/table/table-cell.directive';
 import {TableColumns} from '../../design-system/table/table-column';
 import {TableComponent} from '../../design-system/table/table.component';
 import {UserCreateDialogComponent} from '../components/user-create-dialog/user-create-dialog.component';
+import {UserDto} from '../models/user-dto';
 import {UsersStore} from '../state/users-store';
 
 @Component({
@@ -19,6 +21,7 @@ import {UsersStore} from '../state/users-store';
     TableComponent,
     TableCellDirective,
     ButtonComponent,
+    CheckboxComponent,
   ],
   providers: [
     SnackbarService,
@@ -51,6 +54,11 @@ export class UsersPageComponent {
       this._snackbarService.info('User created');
       this._usersStore.createUser(createUserDto);
     });
+  }
+
+  toggleActive (user: UserDto) {
+    const newUser: UserDto = {...user, active: !user.active};
+    this._usersStore.updateUser(newUser);
   }
 
 }

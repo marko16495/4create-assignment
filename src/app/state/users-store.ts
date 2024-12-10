@@ -1,6 +1,13 @@
 import {Injectable} from '@angular/core';
 import {createStore} from '@ngneat/elf';
-import {withEntities, setEntities, selectAllEntities, addEntities, selectEntityByPredicate} from '@ngneat/elf-entities';
+import {
+  withEntities,
+  setEntities,
+  selectAllEntities,
+  addEntities,
+  selectEntityByPredicate,
+  updateEntities
+} from '@ngneat/elf-entities';
 import {Observable, take, delay} from 'rxjs';
 import {CreateUserDto} from '../models/create-user.dto';
 import {UserDto} from '../models/user-dto';
@@ -36,6 +43,10 @@ export class UsersStore {
       take(1),
       delay(1000),
     )
+  }
+
+  updateUser(user: UserDto) {
+    this._usersStore.update(updateEntities(user.id, user));
   }
 
 }

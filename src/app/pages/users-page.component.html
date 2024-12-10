@@ -15,7 +15,7 @@
 <ds-table [columns]="tableColumns" [data]="users$ | async">
 
   <ng-template [dsTableCell]="'active'" let-item="item">
-    {{ item.active ? '✅' : '❌' }}
+    <input type="checkbox" ds-checkbox [checked]="item.active" (change)="toggleActive(item)">
   </ng-template>
 
 </ds-table>
